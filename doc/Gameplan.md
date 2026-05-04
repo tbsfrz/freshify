@@ -78,7 +78,6 @@
 
 - [ ] Kaggle Food Freshness, Kaggle Meat, Mendeley Brot runterladen und Struktur verstehen — p.P. 60 passende Fotos raussuchen (subjektiv)
 - [ ] Streamlit aufsetzen
-- [ ] Repo Admin-Rechte an alle
 - [ ] Fotoaufgaben aufteilen: wer fotografiert welche Kategorien ✅
 - [ ] Label Mapping definieren: alle Datasets auf 3 Klassen vereinheitlichen
 - [ ] Background Augmentation auf Kaggle/Mendeley Bilder anwenden (rembg)
