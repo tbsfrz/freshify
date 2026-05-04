@@ -2,7 +2,8 @@
 
 ## Datasets & Label Mapping
 
-**Kaggle Obst/Gemüse** → Klasse 1+3 vorhanden, Klasse 2 fehlt komplett
+**Kaggle Obst/Gemüse** https://www.kaggle.com/datasets/ulnnproject/food-freshness-dataset
+→ Klasse 1+3 vorhanden, Klasse 2 fehlt komplett
 - Gurke (V/TF)
 - Apfel (V/TW)
 - Banane (TW/V)
@@ -13,7 +14,8 @@
 - Orange (V)
 - Zitronen (TF/TW)
 
-**Kaggle Meat** → alle 3 Klassen vorhanden (fresh / half-fresh / spoiled)
+**Kaggle Meat** https://www.kaggle.com/datasets/vinayakshanawad/meat-freshness-image-dataset
+→ alle 3 Klassen vorhanden (fresh / half-fresh / spoiled)
 
 **Mendeley Brot** → Klasse 1+3 vorhanden, Klasse 2 fehlt
 - Brötchen
