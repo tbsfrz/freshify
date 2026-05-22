@@ -18,6 +18,16 @@ Install all dependencies:
 ```
 pip install -r requirements.txt
 ```
+# Usefull stuff
+## Scripts
+``move_rename_images.py``:
+Move files from a ``SRC`` to ``DST`` directory, replacing each file's number with the next available one based on the highest number already present in the destination — preserving the original filename and extension.
+
+``image_resize.py``:
+Recursively processes all JPEG, PNG, and HEIC images from a source directory, resizes them to a centered 224×224 square (scale-then-pad, no distortion) with EXIF orientation correction, and saves them as compressed progressive JPEGs to a mirrored destination directory structure.
+
+## CLI
+TLDR: ``for f in data/train/edible/*.jpg; do mv -- "$f" "${f%.jpg}.jpeg"; done``
 
 # Structure
 
@@ -74,7 +84,7 @@ root/
 │   ├── ...
 │
 ├── app/
-│   ├── streamlit_app.py
+│   ├── streamlit.py
 │
 ├── config/
 │   ├── config.yaml
