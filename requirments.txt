@@ -1,6 +1,6 @@
 # Pinned dependencies (update as needed)
 numpy==1.26.3
-tensorflow>=2.13.0,<2.16.0
+torch>=2.1.0
+torchvision>=0.16.0
 pillow==11.3.0
 streamlit>=1.57.0
-keras==3.12.2

@@ -1,96 +1,83 @@
-# Food_Freshness_Categorizer
+# Freshify
 
-# Quickstart
+## Quicktest
 
-Setup our repository:
+### Class: edible
 ```
-git clone https://github.com/Timbakimbo/Food_Freshness_Categorizer
-cd Food_Freshness_Categorizer
+EASY: python main.py predict data/raw/dataset_cat1/paprika/paprika12.jpeg
+HARD: python main.py predict data/raw/dataset_cat1/banane/banane17.jpeg
 ```
 
-Setup a virtual environment for development purposes:
+### Class: non_edible
+```
+EASY: python main.py predict data/raw/dataset_cat2/banane/banane1.png
+HARD: python main.py predict data/raw/dataset_cat2/paprika/paprika19.jpeg
+```
+
+## Quickstart
+
+Setup the repository:
+```
+git clone https://github.com/tbsfrz/freshify
+cd freshify
+```
+
+Create an environment:
 ```
 python -m venv .venv
-source venv/bin/activate    # Windows: venv\Scripts\activate
+source .venv/bin/activate
 ```
 
-Install all dependencies:
+Install dependencies:
 ```
-pip install -r requirements.txt
+pip install -r requirments.txt
 ```
-# Usefull stuff
-## Scripts
-``move_rename_images.py``:
-Move files from a ``SRC`` to ``DST`` directory, replacing each file's number with the next available one based on the highest number already present in the destination — preserving the original filename and extension.
 
-``image_resize.py``:
-Recursively processes all JPEG, PNG, and HEIC images from a source directory, resizes them to a centered 224×224 square (scale-then-pad, no distortion) with EXIF orientation correction, and saves them as compressed progressive JPEGs to a mirrored destination directory structure.
+Run a local prediction:
+```
+python main.py predict path/to/image.jpg
+```
 
-## CLI
-TLDR: ``for f in data/train/edible/*.jpg; do mv -- "$f" "${f%.jpg}.jpeg"; done``
+Train the classifier:
+```
+python main.py train --data-dir data
+```
 
-# Structure
+Run it with Streamlit:
+```
+streamlit run app/streamlit.py
+```
+
+## Useful scripts
+
+`move_rename_images.py`: rename and move files from a source directory to a destination directory, preserving the original extension.
+
+`image_resize.py`: resize images to a centered 224×224 square while preserving aspect ratio and EXIF orientation.
+
+## Structure
 
 ```
 root/
 │
 ├── data/
 │   ├── raw/
-│   │    ├── unsorted/
-│   │    ├── dataset_cat1/
-│   │    │      ├── <categories>/
-│   │    │      │       ├── <files>
-│   │    │      ├── .../
-│   │    │      │       ├── ...
-│   │    ├── dataset_cat2/
-│   │    │      ├── <categories>/
-│   │    │      │       ├── <files>
-│   ├── processed/
 │   ├── train/
-│   │   ├── edible/
-│   │   │    ├── <categories>/
-│   │   │    │      ├── <files>
-│   │   │    ├── .../
-│   │   │    │      ├── ...
-│   │   ├── non_edible/
-│   │   │    ├── <categories>/
-│   │   │    │      ├── <files>
-│   │   │    ├── .../
-│   │   │    │      ├── ...
 │   ├── val/
-│   │   ├── edible/
-│   │   │    ├── <categories>/
-│   │   │    │      ├── <files>
-│   │   │    ├── .../
-│   │   │    │      ├── ...
-│   │   ├── non_edible/
-│   │   │    ├── <categories>/
-│   │   │    │      ├── <files>
-│
-├── logs/
-│   ├── ...
 │
 ├── doc/
-│   ├── ...
 │
 ├── models/
-│   ├── pepper_classifier.keras
-│   ├── ...
+│   ├── classifier.pth
 │
 ├── src/
-│   ├── data_loader.py
+│   ├── model.py
 │   ├── train.py
 │   ├── predict.py
-│   ├── ...
 │
 ├── app/
 │   ├── streamlit.py
 │
-├── config/
-│   ├── config.yaml
-│   ├── ...
-│
 ├── main.py
-├── requirements.txt
+├── requirments.txt
 └── README.md
 ```

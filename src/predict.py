@@ -1,28 +1,52 @@
-import sys
-import numpy as np
-import PIL.Image as Image
-from keras.models import load_model
-from keras.utils import load_img, img_to_array
+from pathlib import Path
+from typing import Optional, Union
 
-IMG_SIZE = (224, 224)
-MODEL_PATH = "models/pepper_classifier.keras"
-MODEL = load_model(MODEL_PATH)
+import torch
+from PIL import Image
+from torchvision import transforms
 
-# Need a function for STREAMLIT
-def predict(image_input):
+from src.model import IMG_SIZE, load_pepper_model
+
+TRANSFORM = transforms.Compose(
+    [
+        transforms.Resize(IMG_SIZE),
+        transforms.CenterCrop(IMG_SIZE),
+        transforms.ToTensor(),
+        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+    ]
+)
+
+_model: Optional[torch.nn.Module] = None
+
+
+def _prepare_image(image_input: Union[str, Path, Image.Image]) -> torch.Tensor:
     if isinstance(image_input, Image.Image):
-        img = image_input.resize(IMG_SIZE)
+        image = image_input.convert("RGB")
     else:
-        img = load_img(image_input, target_size=IMG_SIZE)
-    x = img_to_array(img)
-    x = np.expand_dims(x, axis=0)
-    prediction = MODEL.predict(x)[0][0]
-    
+        image = Image.open(image_input).convert("RGB")
+
+    return TRANSFORM(image).unsqueeze(0)
+
+
+def _get_model() -> torch.nn.Module:
+    global _model
+    if _model is None:
+        _model = load_pepper_model()
+    return _model
+
+
+def predict(image_input: Union[str, Path, Image.Image]) -> tuple[str, float, float]:
+    model = _get_model()
+    tensor = _prepare_image(image_input).to(next(model.parameters()).device)
+
+    with torch.no_grad():
+        prediction = model(tensor).item()
+
     if prediction >= 0.5:
         label = "non_edible"
         confidence = float(prediction)
     else:
         label = "edible"
-        confidence = float(1 - prediction)
+        confidence = float(1.0 - prediction)
 
     return label, confidence, float(prediction)
