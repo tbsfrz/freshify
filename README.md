@@ -53,31 +53,3 @@ streamlit run app/streamlit.py
 `move_rename_images.py`: rename and move files from a source directory to a destination directory, preserving the original extension.
 
 `image_resize.py`: resize images to a centered 224×224 square while preserving aspect ratio and EXIF orientation.
-
-## Structure
-
-```
-root/
-│
-├── data/
-│   ├── raw/
-│   ├── train/
-│   ├── val/
-│
-├── doc/
-│
-├── models/
-│   ├── classifier.pth
-│
-├── src/
-│   ├── model.py
-│   ├── train.py
-│   ├── predict.py
-│
-├── app/
-│   ├── streamlit.py
-│
-├── main.py
-├── requirments.txt
-└── README.md
-```
