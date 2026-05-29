@@ -16,6 +16,8 @@ HARD: python main.py predict data/raw/dataset_cat2/paprika/paprika19.jpeg
 
 ## Quickstart
 
+TODO: switch to uv https://docs.astral.sh/uv/ :-P
+
 Setup the repository:
 ```
 git clone https://github.com/tbsfrz/freshify
