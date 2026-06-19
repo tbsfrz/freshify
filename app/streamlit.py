@@ -17,6 +17,7 @@ from typing import Any
 
 import PIL
 import streamlit as st
+import streamlit.components.v1 as components
 from PIL import Image, ImageDraw, ImageFont, ImageOps
 
 
@@ -380,7 +381,7 @@ div[data-testid="stLayoutWrapper"]:has(> .st-key-sticky_navigation) {
 .f-result-copy { margin-top: .25rem; color: var(--muted); font-size: .8rem; line-height: 1.55; }
 
 .f-metrics {
-    margin-top: .75rem;
+    margin-top: 2.5rem;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: .6rem;
@@ -532,8 +533,8 @@ div[data-testid="stLayoutWrapper"]:has(> .st-key-sticky_navigation) {
 }
 .f-safety-copy { min-width: 0; }
 .f-awaiting {
-    min-height: 270px;
-    margin-top: .9rem;
+    min-height: 345px;
+    margin-top: 6.4rem;
     display: grid;
     place-items: center;
     padding: 1.4rem;
@@ -763,6 +764,83 @@ div[data-testid="stLayoutWrapper"]:has(> .st-key-sticky_navigation) {
     font-weight: 700 !important;
     box-shadow: 0 8px 20px rgba(11,23,16,.15) !important;
 }
+[data-testid="stFileUploader"] section button * {
+    color: inherit !important;
+}
+[data-testid="stFileChips"] {
+    width: 100%;
+    margin-top: .85rem;
+}
+[data-testid="stFileChips"] > div {
+    display: flex;
+    align-items: center;
+    gap: .55rem;
+}
+[data-testid="stFileChip"] {
+    min-height: 46px;
+    padding: .45rem .5rem .45rem .65rem !important;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius-sm) !important;
+    background: rgba(255,255,255,.86) !important;
+    color: var(--ink) !important;
+    box-shadow: 0 3px 10px rgba(8,24,15,.05);
+}
+[data-testid="stFileChip"] svg {
+    color: var(--green-dark) !important;
+    fill: currentColor !important;
+}
+[data-testid="stFileChipName"] {
+    color: var(--ink) !important;
+    font-size: .78rem !important;
+    font-weight: 750 !important;
+}
+[data-testid="stFileChip"] [class*="e1dmul8p8"] {
+    color: var(--muted) !important;
+    font-size: .68rem !important;
+    font-weight: 650 !important;
+}
+[data-testid="stFileChipDeleteBtn"] button,
+[data-testid="stBaseButton-borderlessIcon"] {
+    min-width: 34px !important;
+    width: 34px !important;
+    min-height: 34px !important;
+    height: 34px !important;
+    padding: 0 !important;
+    display: grid !important;
+    place-items: center !important;
+    border: 1px solid transparent !important;
+    border-radius: 9px !important;
+    background: transparent !important;
+    color: var(--muted) !important;
+    box-shadow: none !important;
+}
+[data-testid="stFileChipDeleteBtn"] button:hover,
+[data-testid="stFileChipDeleteBtn"] button:focus,
+[data-testid="stFileChipDeleteBtn"] button:active,
+[data-testid="stBaseButton-borderlessIcon"]:hover,
+[data-testid="stBaseButton-borderlessIcon"]:focus,
+[data-testid="stBaseButton-borderlessIcon"]:active {
+    border-color: transparent !important;
+    background: transparent !important;
+    color: var(--ink) !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+[data-testid="stFileChipDeleteBtn"] button:hover > div,
+[data-testid="stFileChipDeleteBtn"] button:focus > div,
+[data-testid="stFileChipDeleteBtn"] button:active > div,
+[data-testid="stBaseButton-borderlessIcon"]:hover > div,
+[data-testid="stBaseButton-borderlessIcon"]:focus > div,
+[data-testid="stBaseButton-borderlessIcon"]:active > div,
+[data-testid="stBaseButton-borderlessIcon"] [data-testid="stMarkdownContainer"],
+[data-testid="stBaseButton-borderlessIcon"] span {
+    background: transparent !important;
+}
+[data-testid="stFileChipDeleteBtn"] button *,
+[data-testid="stBaseButton-borderlessIcon"] * {
+    color: inherit !important;
+    fill: currentColor !important;
+}
 [data-testid="stCameraInput"] {
     min-height: 345px;
     padding: 2rem;
@@ -876,6 +954,70 @@ input:focus, textarea:focus {
     background: var(--green) !important;
     color: white !important;
 }
+[data-testid="stElementToolbar"] {
+    display: none !important;
+}
+[data-testid="stImage"],
+[data-testid="stJson"] {
+    position: relative;
+}
+.f-fullscreen-target {
+    position: relative;
+}
+.f-fullscreen-toggle {
+    position: absolute;
+    top: .55rem;
+    right: .55rem;
+    z-index: 20;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(220,231,224,.92);
+    border-radius: 8px;
+    background: rgba(255,255,255,.94);
+    color: var(--ink);
+    box-shadow: 0 5px 15px rgba(8,24,15,.10);
+    cursor: pointer;
+    transition: background .15s ease, color .15s ease, border-color .15s ease;
+}
+.f-fullscreen-toggle:hover,
+.f-fullscreen-toggle:focus-visible {
+    border-color: #c7d8ce;
+    background: white;
+    color: var(--green-dark);
+    outline: none;
+}
+.f-fullscreen-toggle::before,
+.f-fullscreen-toggle::after {
+    content: "";
+    position: absolute;
+    box-sizing: border-box;
+}
+.f-fullscreen-toggle::before {
+    width: 13px;
+    height: 13px;
+    border: 2px solid currentColor;
+    border-radius: 3px;
+}
+.f-fullscreen-toggle::after {
+    width: 5px;
+    height: 5px;
+    border-radius: 1px;
+    background: currentColor;
+}
+.f-fullscreen-target:fullscreen {
+    padding: 1.25rem;
+    display: grid;
+    place-items: center;
+    background: var(--canvas);
+}
+.f-fullscreen-target:fullscreen img,
+.f-fullscreen-target:fullscreen [data-testid="stJson"] {
+    max-width: min(96vw, 1400px);
+    max-height: 92vh;
+}
 [data-testid="stExpander"] {
     border-color: var(--border) !important;
     border-radius: var(--radius-sm) !important;
@@ -900,12 +1042,65 @@ input:focus, textarea:focus {
     stroke: currentColor !important;
 }
 [data-testid="stJson"] {
-    background: #fbfdfc !important;
+    width: 100%;
+    margin-top: .35rem;
+    padding: .85rem .95rem;
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: linear-gradient(145deg, #fbfdfc, #f0f5f2) !important;
     color: var(--ink) !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.72);
 }
 [data-testid="stJson"] *,
 [data-testid="stCodeBlock"] *,
 pre, code {
+    color: var(--ink) !important;
+}
+[data-testid="stJson"] .pretty-json-container,
+[data-testid="stJson"] .object-container,
+[data-testid="stJson"] .object-content,
+[data-testid="stJson"] .pushed-content {
+    background: transparent !important;
+}
+[data-testid="stJson"] .variable-row,
+[data-testid="stJson"] .object-key-val {
+    border-left-color: #cfe0d6 !important;
+}
+[data-testid="stJson"] .object-key,
+[data-testid="stJson"] .brace-row span {
+    color: var(--green-dark) !important;
+    font-weight: 750 !important;
+}
+[data-testid="stJson"] .variable-value,
+[data-testid="stJson"] .string-value {
+    color: var(--ink) !important;
+}
+[data-testid="stJson"] .variable-value > div {
+    color: var(--green-dark) !important;
+}
+[data-testid="stJson"] .icon-container svg,
+[data-testid="stJson"] .expanded-icon svg,
+[data-testid="stJson"] .collapsed-icon svg,
+[data-testid="stJson"] .copy-icon svg {
+    color: var(--green-dark) !important;
+    fill: currentColor !important;
+}
+[data-testid="stJson"] [style*="background-color"] {
+    border: 1px solid #d8e6de !important;
+    background-color: #eaf7f0 !important;
+    color: var(--green-dark) !important;
+}
+[data-testid="stCodeBlock"],
+pre {
+    overflow-x: auto;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius-sm) !important;
+    background: #fbfdfc !important;
+}
+code {
+    border-radius: 5px;
+    background: #eaf2ed !important;
     color: var(--ink) !important;
 }
 
@@ -1837,7 +2032,10 @@ pre, code {
         min-height: 265px !important;
         padding: 1.25rem !important;
     }
-    .f-awaiting { min-height: 235px; }
+    .f-awaiting {
+        min-height: 265px;
+        margin-top: 5.8rem;
+    }
     .f-uploaded-frame [data-testid="stImage"] {
         min-height: 280px;
     }
@@ -1933,6 +2131,10 @@ pre, code {
     [data-testid="stCameraInput"],
     .f-uploaded-frame [data-testid="stImage"] {
         min-height: 300px !important;
+    }
+    .f-awaiting {
+        min-height: 300px;
+        margin-top: .9rem;
     }
     .f-uploaded-frame [data-testid="stImage"] img {
         height: 300px;
@@ -2067,6 +2269,9 @@ pre, code {
     .f-uploaded-frame [data-testid="stImage"] {
         min-height: 245px !important;
         padding: 1.1rem !important;
+    }
+    .f-awaiting {
+        min-height: 245px;
     }
     .f-uploaded-frame [data-testid="stImage"] img {
         height: 245px;
@@ -2287,6 +2492,53 @@ pre, code {
 </style>
 """,
     unsafe_allow_html=True,
+)
+
+components.html(
+    """
+<script>
+(() => {
+    const doc = window.parent.document;
+
+    const makeButton = () => {
+        const button = doc.createElement("button");
+        button.type = "button";
+        button.className = "f-fullscreen-toggle";
+        button.setAttribute("aria-label", "Vollbild umschalten");
+        button.setAttribute("title", "Vollbild");
+        button.addEventListener("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const target = button.closest(".f-fullscreen-target");
+            if (!target) return;
+
+            if (doc.fullscreenElement === target) {
+                doc.exitFullscreen?.();
+            } else {
+                target.requestFullscreen?.();
+            }
+        });
+        return button;
+    };
+
+    const install = () => {
+        doc.querySelectorAll('[data-testid="stImage"], [data-testid="stJson"]').forEach((target) => {
+            if (target.querySelector(":scope > .f-fullscreen-toggle")) return;
+            target.classList.add("f-fullscreen-target");
+            target.appendChild(makeButton());
+        });
+    };
+
+    install();
+    if (!window.__freshifyFullscreenObserver) {
+        window.__freshifyFullscreenObserver = new MutationObserver(install);
+        window.__freshifyFullscreenObserver.observe(doc.body, { childList: true, subtree: true });
+    }
+})();
+</script>
+""",
+    height=0,
 )
 
 
@@ -2596,7 +2848,7 @@ def generate_pdf(
     engines: dict[str, str],
 ) -> bytes | None:
     try:
-        None
+        pass
     except ImportError:
         return None
     return None
